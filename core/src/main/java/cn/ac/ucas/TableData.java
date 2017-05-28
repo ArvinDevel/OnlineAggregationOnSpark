@@ -12,11 +12,27 @@ public class TableData implements Iterable<Row>{
     private Schema schema;
     private long size;
     private List<Row> data;
-    //todo init index to -1，list's element number limition, can change index's type int to long
+    //todo list's element number limition, can change index's type int to long
     private int index;
+
+    //init index to -1，
+    public TableData(){
+     index = -1;
+    }
 
     public Schema getSchema(){
         return schema;
+    }
+
+    public void setSize(long size){
+        this.size = size;
+    }
+    public long getSize(){
+        return size;
+    }
+
+    public void setData(List<Row> data){
+        this.data = data;
     }
 
     public boolean setschema(Schema schema){

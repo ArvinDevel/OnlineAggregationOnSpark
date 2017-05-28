@@ -16,7 +16,7 @@ public abstract class Operator {
     private List<Operator> children;
 
     //first get children's data, then use their data as input
-    public abstract TableData compute();
+    public abstract TableData compute() throws Exception;
 
 
 
@@ -29,6 +29,9 @@ public abstract class Operator {
 //        compute();
 //    }
 
+    public List<Operator> getChildren(){
+        return children;
+    }
     public int getInputSize(){
         return inputSize;
     }
