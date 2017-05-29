@@ -1,6 +1,9 @@
 package cn.ac.ucas;
 
 import org.apache.spark.sql.*;
+import org.apache.spark.sql.Row;
+
+import java.util.List;
 
 import static org.apache.spark.sql.functions.col;
 
@@ -14,15 +17,54 @@ public class UCASDataFrame {
     private String filepath;
     private String filetype;
     Dataset<org.apache.spark.sql.Row> df;
-public boolean createSpark(){
-    spark = SparkSession
+    //indicates whether sample is finished
+    private boolean finish;
+    private double finishedPercentage;
+    private double initPercentage;
+
+    public UCASDataFrame(String filepath,String filetype){
+        this.filetype = filetype;
+        this.filepath = filepath;
+        finish = false;
+        createSpark();
+        creadDF();
+
+    }
+    public boolean createSpark(){
+        spark = SparkSession
             .builder()
+            .master("local")
             .appName("Java Spark SQL ")
             .config("spark.some.config.option", "some-value")
             .getOrCreate();
+        spark.sparkContext().setLogLevel("ERROR");
     return true;
 }
-public void creadDF(){
+    //use spark's sample to get data and provide data continually
+    public TableData sample(){
+
+        //set finishedPercentage
+        Dataset<org.apache.spark.sql.Row> tmp ;
+
+        List<Row> results;
+        for(int j = 0; j < 10; j++){
+
+            results = df.sample(false,1).collectAsList();
+            for(int i = 0; i < results.size(); i++)
+                System.out.print(results.get(i).toString());
+            System.out.println("the " + j + "sample call with false: ");
+        }
+        for(int j = 0; j < 10; j++){
+
+            results = df.sample(true,0.2).collectAsList();
+            for(int i = 0; i < results.size(); i++)
+                System.out.print(results.get(i).toString());
+            System.out.println("the " + j + "sample call with true: ");
+        }
+
+        return null;
+}
+    public void creadDF(){
     switch (filetype){
         case "json":
             df = spark.read().json(filepath);
@@ -30,100 +72,9 @@ public void creadDF(){
             df = spark.read().csv(filepath);
 
     }
-
-    // Displays the content of the DataFrame to stdout
-    df.show();
-    // +----+-------+
-    // | age|   name|
-    // +----+-------+
-    // |null|Michael|
-    // |  30|   Andy|
-    // |  19| Justin|
-    // +----+-------+
-    // $example off:create_df$
-
-    // $example on:untyped_ops$
-    // Print the schema in a tree format
-    df.printSchema();
-    // root
-    // |-- age: long (nullable = true)
-    // |-- name: string (nullable = true)
-
-    // Select only the "name" column
-    df.select("name").show();
-    // +-------+
-    // |   name|
-    // +-------+
-    // |Michael|
-    // |   Andy|
-    // | Justin|
-    // +-------+
-
-    // Select everybody, but increment the age by 1
-    df.select(col("name"), col("age").plus(1)).show();
-    // +-------+---------+
-    // |   name|(age + 1)|
-    // +-------+---------+
-    // |Michael|     null|
-    // |   Andy|       31|
-    // | Justin|       20|
-    // +-------+---------+
-
-    // Select people older than 21
-    df.filter(col("age").gt(21)).show();
-    // +---+----+
-    // |age|name|
-    // +---+----+
-    // | 30|Andy|
-    // +---+----+
-
-    // Count people by age
-    df.groupBy("age").count().show();
-    // +----+-----+
-    // | age|count|
-    // +----+-----+
-    // |  19|    1|
-    // |null|    1|
-    // |  30|    1|
-    // +----+-----+
-    // $example off:untyped_ops$
-
-    // $example on:run_sql$
-    // Register the DataFrame as a SQL temporary view
-    df.createOrReplaceTempView("people");
-
-    Dataset<org.apache.spark.sql.Row> sqlDF = spark.sql("SELECT * FROM people");
-    sqlDF.show();
-    // +----+-------+
-    // | age|   name|
-    // +----+-------+
-    // |null|Michael|
-    // |  30|   Andy|
-    // |  19| Justin|
-    // +----+-------+
-    // $example off:run_sql$
-
-
-
-    // Global temporary view is tied to a system preserved database `global_temp`
-    spark.sql("SELECT * FROM global_temp.people").show();
-    // +----+-------+
-    // | age|   name|
-    // +----+-------+
-    // |null|Michael|
-    // |  30|   Andy|
-    // |  19| Justin|
-    // +----+-------+
-
-    // Global temporary view is cross-session
-    spark.newSession().sql("SELECT * FROM global_temp.people").show();
-    // +----+-------+
-    // | age|   name|
-    // +----+-------+
-    // |null|Michael|
-    // |  30|   Andy|
-    // |  19| Justin|
-    // +----+-------+
-    // $example off:global_temp_view$
-}
+    }
+    public static void main(String[] args){
+        UCASDataFrame udf = new UCASDataFrame("core/src/main/resources/people.json","json");
+        udf.sample();
+    }
 }
