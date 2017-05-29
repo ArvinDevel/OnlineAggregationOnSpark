@@ -1,4 +1,4 @@
-package cn.ac.ucas;
+package cn.ac.ucas.beans;
 
 
 
@@ -9,8 +9,7 @@ package cn.ac.ucas;
 public class Schema {
     //
     DataType[] values;
-
-
+    String[] names;
 
 }
 enum DataType { Int, Long, Float, Double, String, Binary}

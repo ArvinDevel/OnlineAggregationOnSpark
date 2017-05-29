@@ -1,4 +1,4 @@
-package cn.ac.ucas;
+package cn.ac.ucas.beans;
 
 import java.nio.ByteBuffer;
 
@@ -13,6 +13,4 @@ public class Row {
     public void setData(ByteBuffer[] data){
         this.containers = data;
     }
-
-
 }

@@ -1,4 +1,7 @@
-package cn.ac.ucas;
+package cn.ac.ucas.physicalplan;
+
+import cn.ac.ucas.beans.Schema;
+import cn.ac.ucas.beans.TableData;
 
 import java.util.List;
 

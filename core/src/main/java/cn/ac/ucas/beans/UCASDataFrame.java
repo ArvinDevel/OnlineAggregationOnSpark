@@ -1,11 +1,9 @@
-package cn.ac.ucas;
+package cn.ac.ucas.beans;
 
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.Row;
 
 import java.util.List;
-
-import static org.apache.spark.sql.functions.col;
 
 /**
  * Created by yaoguangzhong on 2017/5/25.

@@ -1,4 +1,4 @@
-package cn.ac.ucas;
+package cn.ac.ucas.beans;
 
 import java.util.Iterator;
 import java.util.List;
