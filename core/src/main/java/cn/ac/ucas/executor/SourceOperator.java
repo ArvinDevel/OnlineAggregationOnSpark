@@ -1,6 +1,6 @@
 package cn.ac.ucas.executor;
 
-import cn.ac.ucas.physicalplan.Operator;
+import cn.ac.ucas.Operator;
 import cn.ac.ucas.beans.Row;
 import cn.ac.ucas.beans.TableData;
 

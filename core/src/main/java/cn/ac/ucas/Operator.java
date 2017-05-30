@@ -1,4 +1,4 @@
-package cn.ac.ucas.physicalplan;
+package cn.ac.ucas;
 
 import cn.ac.ucas.beans.Schema;
 import cn.ac.ucas.beans.TableData;

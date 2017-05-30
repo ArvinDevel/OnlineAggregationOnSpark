@@ -12,5 +12,4 @@ public class Schema {
     String[] names;
 
 }
-enum DataType { Int, Long, Float, Double, String, Binary}
 
