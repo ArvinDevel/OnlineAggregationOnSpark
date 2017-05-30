@@ -1,4 +1,4 @@
-package cn.ac.ucas.beans;
+package cn.ac.ucas.basics;
 
 import org.apache.spark.sql.*;
 import org.apache.spark.sql.Row;

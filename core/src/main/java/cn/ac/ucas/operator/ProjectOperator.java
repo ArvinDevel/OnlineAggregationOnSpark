@@ -1,8 +1,7 @@
-package cn.ac.ucas.executor;
+package cn.ac.ucas.operator;
 
-import cn.ac.ucas.Operator;
-import cn.ac.ucas.beans.Row;
-import cn.ac.ucas.beans.TableData;
+import cn.ac.ucas.basics.Row;
+import cn.ac.ucas.basics.TableData;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,19 +10,17 @@ import java.util.List;
 /**
  * Created by yaoguangzhong on 2017/5/28.
  */
-public class FilterOperator extends Operator{
+public class ProjectOperator extends Operator {
+
     @Override
-    public TableData compute() throws Exception{
+    public TableData compute() {
         return null;
     }
-//todo record filter condition
-
 }
+class MockProjectOperator extends Operator {
 
-class MockFilterOperator extends Operator {
-
-    //todo need a condition class
-    public MockFilterOperator(String[] outFields){
+    //todo record output Fields' type and name carefully in ProjectOperator
+    public MockProjectOperator(String[] outFields){
         this.setOutputSize(outFields.length);
 
     }
@@ -38,20 +35,18 @@ class MockFilterOperator extends Operator {
         TableData previous = child.compute();
         TableData data = new TableData();
         List<Row> rowList = new ArrayList<Row>();
-        int size = 0;
 
         Iterator<Row> iterator = previous.iterator();
         while (iterator.hasNext()){
             Row e = iterator.next();
-            //simulating filter
-            if(e != null){
-                rowList.add(e);
-                size++;
-            }
+            //simulating projection
 
+            rowList.add(e);
         }
+
         data.setData(rowList);
-        data.setSize(size);
+        //projection doesn't change table size
+        data.setSize(previous.getSize());
         return data;
     }
 }

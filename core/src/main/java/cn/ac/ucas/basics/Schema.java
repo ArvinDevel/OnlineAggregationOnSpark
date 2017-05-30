@@ -1,4 +1,4 @@
-package cn.ac.ucas.beans;
+package cn.ac.ucas.basics;
 
 
 

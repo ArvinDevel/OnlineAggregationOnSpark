@@ -1,7 +1,7 @@
-package cn.ac.ucas;
+package cn.ac.ucas.operator;
 
-import cn.ac.ucas.beans.Schema;
-import cn.ac.ucas.beans.TableData;
+import cn.ac.ucas.basics.Schema;
+import cn.ac.ucas.basics.TableData;
 
 import java.util.List;
 

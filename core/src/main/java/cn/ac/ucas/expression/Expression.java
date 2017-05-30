@@ -1,10 +1,8 @@
 package cn.ac.ucas.expression;
 
 import cn.ac.ucas.TreeNode;
-import cn.ac.ucas.beans.DataType;
-import cn.ac.ucas.beans.Row;
-
-import java.util.Objects;
+import cn.ac.ucas.basics.DataType;
+import cn.ac.ucas.basics.Row;
 
 /**
  *

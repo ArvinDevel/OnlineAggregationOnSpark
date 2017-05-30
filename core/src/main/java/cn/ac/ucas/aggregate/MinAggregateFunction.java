@@ -1,7 +1,7 @@
 package cn.ac.ucas.aggregate;
 
-import cn.ac.ucas.beans.Row;
-import cn.ac.ucas.beans.RunningResult;
+import cn.ac.ucas.basics.Row;
+import cn.ac.ucas.basics.RunningResult;
 
 /**
 *

@@ -5,8 +5,8 @@ package cn.ac.ucas.aggregate;
  * Created by yaoguangzhong on 2017/5/29.
  */
 
-import cn.ac.ucas.beans.Row;
-import cn.ac.ucas.beans.RunningResult;
+import cn.ac.ucas.basics.Row;
+import cn.ac.ucas.basics.RunningResult;
 
 /**
  *  Concrete aggregate function implement two methods, use inputRowOffsets to get necessary fields

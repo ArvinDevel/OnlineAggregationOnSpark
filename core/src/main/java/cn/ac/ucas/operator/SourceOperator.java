@@ -1,8 +1,7 @@
-package cn.ac.ucas.executor;
+package cn.ac.ucas.operator;
 
-import cn.ac.ucas.Operator;
-import cn.ac.ucas.beans.Row;
-import cn.ac.ucas.beans.TableData;
+import cn.ac.ucas.basics.Row;
+import cn.ac.ucas.basics.TableData;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
