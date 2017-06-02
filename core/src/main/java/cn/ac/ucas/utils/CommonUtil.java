@@ -5,4 +5,5 @@ package cn.ac.ucas.utils;
  * Created by caihengyi on 29/05/2017.
  */
 public class CommonUtil {
+
 }

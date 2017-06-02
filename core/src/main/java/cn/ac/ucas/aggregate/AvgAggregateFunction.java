@@ -9,7 +9,7 @@ import cn.ac.ucas.basics.RunningResult;
 public class AvgAggregateFunction extends AggregateFunction{
 
 
-    // declaire necessary variable here
+    // declare necessary variable here
 
 
 
