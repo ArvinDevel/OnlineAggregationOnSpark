@@ -9,6 +9,14 @@ import java.nio.ByteBuffer;
 public class Row {
     private ByteBuffer[] containers;
     private int size;
+
+    public Row(){
+
+    }
+    public Row(ByteBuffer[] recordNew) {
+        containers = recordNew;
+    }
+
     //todo does it need deep copy
     public void setData(ByteBuffer[] data){
         this.containers = data;
@@ -16,5 +24,6 @@ public class Row {
     public ByteBuffer[] getData(){
         return containers;
     }
+
 
 }

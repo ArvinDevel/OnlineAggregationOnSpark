@@ -23,8 +23,7 @@ public class FilterOperator extends Operator{
 class MockFilterOperator extends Operator {
 
     //todo need a condition class
-    public MockFilterOperator(String[] outFields){
-        this.setOutputSize(outFields.length);
+    public MockFilterOperator(){
 
     }
 
@@ -50,6 +49,7 @@ class MockFilterOperator extends Operator {
             }
 
         }
+        data.setschema(previous.getSchema());
         data.setData(rowList);
         data.setSize(size);
         return data;

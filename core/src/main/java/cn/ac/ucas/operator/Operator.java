@@ -3,6 +3,7 @@ package cn.ac.ucas.operator;
 import cn.ac.ucas.basics.Schema;
 import cn.ac.ucas.basics.TableData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,12 +18,17 @@ public abstract class Operator {
     private Schema outputSchema;
 
 
+
+
     private List<Operator> children;
 
     //first get children's data, then use their data as input
     public abstract TableData compute() throws Exception;
 
-
+    //initialize
+    public Operator(){
+        children = new ArrayList<Operator>();
+    }
 
 
 //    /**
