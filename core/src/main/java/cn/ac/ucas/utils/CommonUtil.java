@@ -11,6 +11,7 @@ import java.nio.charset.CharsetDecoder;
  */
 public class CommonUtil {
 
+
     /**
      * String transfer ByteBuffer
      * @param str
@@ -72,4 +73,5 @@ public class CommonUtil {
             return "";
         }
     }
+
 }

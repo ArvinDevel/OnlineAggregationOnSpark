@@ -24,13 +24,14 @@ public class SqlPreexec {
             Statement stat = CCJSqlParserUtil.parse(this.sql);
             if(stat instanceof Select){
                 return true;
+            }else{
+                logger.error("Only support SELECT!");
             }
         } catch (JSQLParserException e) {
             e.printStackTrace();
             logger.error("Sql invalid!");
             return false;
         }
-        logger.error("Only support SELECT!");
         return false;
     }
 
