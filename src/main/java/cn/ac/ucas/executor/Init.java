@@ -1,7 +1,8 @@
-package cn.ac.ucas.main;
+package cn.ac.ucas.executor;
 
 import cn.ac.ucas.basics.ArgPair;
 import cn.ac.ucas.utils.CliUtil;
+import cn.ac.ucas.utils.SqlUtil;
 import jline.console.ConsoleReader;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import static cn.ac.ucas.utils.CliUtil.printHelp;
  * Main driver of online aggregation.
  * Created by caihengyi on 02/06/2017.
  */
-public class Main {
+public class Init {
 
     public static void main(String[] args) throws IOException {
         String linePrompt = "ucas-online-aggregation>";
@@ -39,8 +40,13 @@ public class Main {
                 printHelp();
                 break;
             case SQL:
-                // TODO:
+                String sql = argPair.getArgContent();
+                if (SqlUtil.validSelectSQL(sql)){
+                    // TODO:
 
+                }else{
+                    System.out.println("\"" + sql + "\" is not a valid select sql statement!");
+                }
                 break;
             case IMPORT:
                 Matcher matcher = CliUtil.importCommandPattern.matcher(argPair.getArgContent());
