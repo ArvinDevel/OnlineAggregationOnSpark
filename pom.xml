@@ -5,7 +5,6 @@
     <groupId>cn.ac.ucas</groupId>
     <artifactId>onlineAggregation</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
     <name>OnlineAggregationOnSpark</name>
     <description>
         A project implement online aggregation on Spark
@@ -144,11 +143,25 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>${maven-assembly-plugin.version}</version>
                 <configuration>
-                    <tarLongFileMode>gnu</tarLongFileMode>
-                    <descriptors>
-                        <descriptor>src/assemble/src.xml</descriptor>
-                    </descriptors>
+                    <descriptorRefs>
+                        jar-with-dependencies
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>cn.ac.ucas.executor.Init</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -188,8 +201,6 @@
                     <mainClass>cn.ac.ucas.executor.Init</mainClass>
                 </configuration>
             </plugin>
-
-
         </plugins>
     </build>
 

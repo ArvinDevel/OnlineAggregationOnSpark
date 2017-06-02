@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  * Created by caihengyi on 02/06/2017.
  */
 public class CliUtil {
-    public static Pattern importCommandPattern = Pattern.compile("import\\s+(\\S+)\\s+as\\s+(\\S+)");
+    public static Pattern ImportCommandPattern = Pattern.compile("import\\s+(\\S+)\\s+as\\s+(\\S+)");
 
     private final static String HELP_COMMAND = "help:";
     private final static String HELP_MSG = "Show this message.";
@@ -18,13 +18,14 @@ public class CliUtil {
     private final static String IMPORT_COMMAND = "import <data_file> as <table>:";
     private final static String IMPORT_MSG = "Import your data(csv or json) to system.";
 
-    private final static String SQL_COMMAND = "<AGGREGATION SQL COMMAND>:";
-    private final static String SQL_MSG = "A SQL command to execute aggregation, e.g.\"select avg(field1) from table_name group by field2\"";
+    private final static String SQL_COMMAND = "<SQL COMMAND>:";
+    private final static String SQL_MSG = "SQL command to execute aggregation, e.g.\"select avg(field1) from table group by field2\"";
 
     public enum ArgsError {
         INVALID_COMMAND("Invalid Command!"),
         OK("OK!"),
-        UNKNOWN("Unknown Error!");
+        UNKNOWN("Unknown Error!"),
+        EMPTY("Empty!");
 
         private String s;
 
@@ -41,7 +42,10 @@ public class CliUtil {
         HELP("help"),
         IMPORT("import data as table"),
         SQL("sql statement"),
-        EXIST("exist");
+        EXIST("exist"),
+        EMPTY("empty"),
+        UNKNOWN("unknown");
+
         private String s;
 
         ArgsType(String s) {
@@ -63,8 +67,9 @@ public class CliUtil {
     }
 
     private static ArgsError checkArgs(String line) {
+        if(line.trim().length() == 0) return ArgsError.EMPTY;
         if (!line.trim().toLowerCase().equals("help")
-                && !importCommandPattern.matcher(line).matches()
+                && !ImportCommandPattern.matcher(line).matches()
                 && !SqlUtil.validSQL(line)
                 && !line.trim().toLowerCase().equals("exist")) {
             return ArgsError.INVALID_COMMAND;
@@ -73,18 +78,20 @@ public class CliUtil {
     }
 
     public static ArgPair parseArgs(String line) {
-        ArgPair argPair = new ArgPair(ArgsType.HELP,"help");
-        if (checkArgs(line) != CliUtil.ArgsError.OK) {
-            return argPair;
+        ArgPair argHelpPair = new ArgPair(ArgsType.HELP,"help");
+        if (checkArgs(line) == ArgsError.INVALID_COMMAND) {
+            return new ArgPair(ArgsType.UNKNOWN, line);
         } else {
-            if(importCommandPattern.matcher(line).matches()){
+            if(ImportCommandPattern.matcher(line).matches()){
                 return new ArgPair(ArgsType.IMPORT, line);
             }else if(SqlUtil.validSQL(line)){
                 return new ArgPair(ArgsType.SQL,line);
             }else if(line.trim().toLowerCase().equals("exist")){
                 return new ArgPair(ArgsType.EXIST,"exist");
+            }else if(line.trim().length() == 0){
+                return new ArgPair(ArgsType.EMPTY,"empty");
             }else{
-                return argPair;
+                return argHelpPair;
             }
         }
     }

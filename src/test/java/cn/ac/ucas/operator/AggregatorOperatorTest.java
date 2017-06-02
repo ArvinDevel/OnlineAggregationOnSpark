@@ -40,7 +40,7 @@ public class AggregatorOperatorTest {
 
 
 
-            root = new AggregatorOperator();
+            root = new AggregatorOperator(fields);
             filter = new MockFilterOperator();
             project = new MockProjectOperator(fields);
             source = new MockSourceOperator();

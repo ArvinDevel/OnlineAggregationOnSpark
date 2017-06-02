@@ -49,7 +49,7 @@ public class Init {
                 }
                 break;
             case IMPORT:
-                Matcher matcher = CliUtil.importCommandPattern.matcher(argPair.getArgContent());
+                Matcher matcher = CliUtil.ImportCommandPattern.matcher(argPair.getArgContent());
                 String filePath = "";
                 String tableName = "";
                 while (matcher.find()) {
@@ -67,6 +67,11 @@ public class Init {
                 break;
             case EXIST:
                 System.exit(0);
+                break;
+            case EMPTY:
+                break;
+            case UNKNOWN:
+                System.out.println("ucas-online-aggregation: command not found: " + argPair.getArgContent());
                 break;
         }
     }
