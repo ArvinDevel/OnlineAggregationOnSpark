@@ -12,5 +12,12 @@
     <artifactId>scce-preexec</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>OnlineAggregationOnSpark :: Preexec Library</name>
+    <dependencies>
+        <dependency>
+            <groupId>cn.ac.ucas</groupId>
+            <artifactId>scce-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
