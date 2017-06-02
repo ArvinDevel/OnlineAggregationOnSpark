@@ -31,8 +31,8 @@ class MockSourceOperator extends Operator {
         List<Row> rowList = new ArrayList<Row>();
         for(int i = 0; i < 1000; i++){
             Row e = new Row();
-            ByteBuffer byteBuffer1 = ByteBuffer.wrap("example".getBytes());
-            ByteBuffer byteBuffer2 = ByteBuffer.wrap("test".getBytes());
+            ByteBuffer byteBuffer1 = ByteBuffer.wrap((i+"").getBytes());
+            ByteBuffer byteBuffer2 = ByteBuffer.wrap(("test"+i).getBytes());
             ByteBuffer[] byteBuffers = {byteBuffer1,byteBuffer2};
             e.setData(byteBuffers);
             rowList.add(e);

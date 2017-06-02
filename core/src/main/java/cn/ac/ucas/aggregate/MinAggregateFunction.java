@@ -7,6 +7,7 @@ import cn.ac.ucas.basics.RunningResult;
 *
  */
 public class MinAggregateFunction extends AggregateFunction{
+
     @Override
     public void update(Row inputRow) {
 

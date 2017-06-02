@@ -20,6 +20,10 @@ public class TableData implements Iterable<Row>{
      index = -1;
     }
 
+    public void setschema(Schema schema){
+        this.schema = schema;
+    }
+
     public Schema getSchema(){
         return schema;
     }
@@ -35,10 +39,7 @@ public class TableData implements Iterable<Row>{
         this.data = data;
     }
 
-    public boolean setschema(Schema schema){
-        this.schema = schema;
-        return true;
-    }
+
 
 
     @Override

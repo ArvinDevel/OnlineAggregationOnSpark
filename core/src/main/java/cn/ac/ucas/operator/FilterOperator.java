@@ -11,6 +11,7 @@ import java.util.List;
  * Created by yaoguangzhong on 2017/5/28.
  */
 public class FilterOperator extends Operator{
+
     @Override
     public TableData compute() throws Exception{
         return null;

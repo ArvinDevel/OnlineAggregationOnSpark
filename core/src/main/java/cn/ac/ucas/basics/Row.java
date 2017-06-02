@@ -13,4 +13,8 @@ public class Row {
     public void setData(ByteBuffer[] data){
         this.containers = data;
     }
+    public ByteBuffer[] getData(){
+        return containers;
+    }
+
 }

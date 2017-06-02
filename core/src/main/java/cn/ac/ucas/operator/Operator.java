@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Abstract operator, representing a sql computation.
+ * Note: don't forget to set TableData schema
  */
 public abstract class Operator {
     //input attribute num
@@ -58,4 +59,7 @@ public abstract class Operator {
         return outputSchema;
     }
 
+    public void setChild(Operator child) {
+        children.add(child);
+    }
 }
