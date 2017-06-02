@@ -16,13 +16,17 @@ public class AggregatorOperator extends Operator {
     //record groupby info
     Map<String, Row> hashMap = new HashMap<String, Row>();
     List<Expression> groupingExpressions;
+    //groupby fields
+    String[] groupby;
+    //Map<>
     List<AggregateFunction> functions;
 
     //todo record aggregation's relations to fields
 
     //todo groupby dealing,hash and so on
 
-    public AggregatorOperator(){
+    public AggregatorOperator(String[] groupby){
+
 
     }
 

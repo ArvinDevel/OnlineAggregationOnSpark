@@ -19,14 +19,21 @@ public class UCASDataFrame {
     private boolean finish;
     private double finishedPercentage;
     private double initPercentage;
+    //the schema of tbl
+    private Schema schema;
 
-    public UCASDataFrame(String filepath,String filetype){
+    public UCASDataFrame(String filepath,String filetype,String tblName){
         this.filetype = filetype;
         this.filepath = filepath;
         finish = false;
         createSpark();
         creadDF();
 
+    }
+    public Schema getSchema(){
+        schema.setNames(df.columns());
+        //schema.setValues(df.dtypes());
+        return schema;
     }
     public boolean createSpark(){
         spark = SparkSession
@@ -72,7 +79,7 @@ public class UCASDataFrame {
     }
     }
     public static void main(String[] args){
-        UCASDataFrame udf = new UCASDataFrame("core/src/main/resources/people.json","json");
+        UCASDataFrame udf = new UCASDataFrame("resources/people.json","json","people");
         udf.sample();
     }
 }
